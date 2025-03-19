@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // verbo http - get, post, put, patch, delete
@@ -16,3 +17,5 @@ Route::get('admin/usuarios', function () {
         'name'=>'John'
     ];
 });
+
+Route::get('/users', [UserController::class, 'getUsers']);
