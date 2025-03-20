@@ -19,3 +19,5 @@ Route::get('admin/usuarios', function () {
 });
 
 Route::get('/users', [UserController::class, 'getUsers']);
+
+Route::get('admin/usuarios/{user}', [UserController::class, 'show']);
