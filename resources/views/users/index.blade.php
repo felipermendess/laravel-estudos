@@ -9,6 +9,17 @@
 
 <body>
     <h1>{{ $greeting }}</h1>
+
+    @php
+    $name = 'felipe';
+    @endphp
+
+    @foreach ($users as $user)
+    <div>{{ $user->name }} - {{ $user->email }}</div>
+    @endforeach
+
+    {{ $name }}
+
     {{ dd($users) }}
 </body>
 
