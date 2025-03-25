@@ -3,8 +3,8 @@
 @section('title', 'Listagem de usuários')
 
 @section('content')
-<h1>{{ $greeting }}</h1>
-
+<h1 class="user-name">{{ $greeting }}</h1>
+<img src="{{ Vite::asset('resources/images/ilustracao.png') }}" alt="">
 @php
 $name = 'felipe';
 @endphp

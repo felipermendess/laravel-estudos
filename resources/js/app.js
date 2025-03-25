@@ -1,1 +1,3 @@
-import './bootstrap';
+import.meta.glob(["../images/**"]);
+
+console.log("Hello World Laravel");
