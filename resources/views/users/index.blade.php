@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('title', 'Listagem de usuários')
 
-<body>
-    <h1>{{ $greeting }}</h1>
+@section('content')
+<h1>{{ $greeting }}</h1>
 
-    @php
-    $name = 'felipe';
-    @endphp
+@php
+$name = 'felipe';
+@endphp
 
-    @foreach ($users as $user)
-    <div>{{ $user->name }} - {{ $user->email }}</div>
-    @endforeach
+@foreach ($users as $user)
+<div>{{ $user->name }} - {{ $user->email }}</div>
+@endforeach
 
-    {{ $name }}
+{{ $name }}
 
-    {{ dd($users) }}
-</body>
-
-</html>
+{{ dd($users) }}
+@endsection
