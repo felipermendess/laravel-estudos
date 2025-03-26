@@ -9,6 +9,7 @@ class Post extends Model
 {
     use HasFactory;
     // atributo protegido, array de campos de uma tabela liberados para salvamento em massa
+    // Define os campos permitidos para preenchimento em massa.
     protected $fillable = [
         'title', 'body'
     ];
