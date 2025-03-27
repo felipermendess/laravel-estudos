@@ -32,9 +32,27 @@ Route::get('/', function () {
     // alternativa de coleção com filtro
     // $post = Post::where('title', 'LIKE', '%post%')->get();
     // alternativa diretamente no model com filtro
-    $post = Post::where('title', 'LIKE', '%post%')->first();
-    dd($post);
-    
+    // $post = Post::where('title', 'LIKE', '%post%')->first();
+    // dd($post);
+
+    // atualizando registros com Eloquent
+    // atualizando manualmente
+    $firstPost = Post::find(1);
+    $firstPost->title = 'Meu novo post';
+    $firstPost->body = 'Meu novo conteúdo';
+    $firstPost->save();
+    // dd($firstPost);
+    // forma alternativa com fill
+    $values = [
+        'title' => 'My new post',
+        'body' => 'My new contet'
+    ];
+
+    $secondPost = Post::where('id', '2')->first();
+    $secondPost->fill($values);
+    $secondPost->save();
+    dd($secondPost);
+
     return view('welcome');
 });
 
