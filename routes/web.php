@@ -37,21 +37,26 @@ Route::get('/', function () {
 
     // atualizando registros com Eloquent
     // atualizando manualmente
-    $firstPost = Post::find(1);
-    $firstPost->title = 'Meu novo post';
-    $firstPost->body = 'Meu novo conteúdo';
-    $firstPost->save();
-    // dd($firstPost);
-    // forma alternativa com fill
-    $values = [
-        'title' => 'My new post',
-        'body' => 'My new contet'
-    ];
+    // $firstPost = Post::find(1);
+    // $firstPost->title = 'Meu novo post';
+    // $firstPost->body = 'Meu novo conteúdo';
+    // $firstPost->save();
+    // // dd($firstPost);
+    // // forma alternativa com fill
+    // $values = [
+    //     'title' => 'My new post',
+    //     'body' => 'My new contet'
+    // ];
 
-    $secondPost = Post::where('id', '2')->first();
-    $secondPost->fill($values);
-    $secondPost->save();
-    dd($secondPost);
+    // $secondPost = Post::where('id', '2')->first();
+    // $secondPost->fill($values);
+    // $secondPost->save();
+    // dd($secondPost);
+
+    // deletando registro com Eloquent
+    // $selectedPost = Post::find(2);
+    // $selectedPost->delete();
+    // dd($selectedPost);
 
     return view('welcome');
 });
