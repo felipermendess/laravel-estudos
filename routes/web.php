@@ -65,14 +65,21 @@ Route::get('/', function () {
     // $user = User::with('profile')->find(1);
     // dd($user);
 
-    $user = User::with('profile')->find(2);
-    $user->profile()->create([
-        'type' => 'PJ',
-        'document_number' => '909049499049'
-    ]);
+    // $user = User::with('profile')->find(2);
+    // $user->profile()->create([
+    //     'type' => 'PJ',
+    //     'document_number' => '909049499049'
+    // ]);
 
-    // dd($user->profile->type);
-    dd($user->profile->document_number);
+    // // dd($user->profile->type);
+    // dd($user->profile->document_number);
+
+    // $user = User::with('posts', 'profile')->find(1);
+    // $user->posts()->create([
+    //     'title' => 'Meu terceiro post',
+    //     'body' => 'Mais um conteúdo'
+    // ]);
+    // dd($user);
 
 });
 
