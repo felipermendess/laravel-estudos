@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,15 @@ Route::get('/', function () {
     //     'body' => 'Mais um conteúdo'
     // ]);
     // dd($user);
+
+    // $roles = Role::all();
+    // dd($roles);
+
+    $user = User::with('roles')->find(2);
+    // $user->roles()->attach(2);
+    // $user->roles()->detach(2);
+    $user->roles()->sync([1]);
+    dd($user);
 
 });
 
