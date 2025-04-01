@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 // verbo http - get, post, put, patch, delete
@@ -58,7 +59,21 @@ Route::get('/', function () {
     // $selectedPost->delete();
     // dd($selectedPost);
 
-    return view('welcome');
+    // $user = User::find(1);
+    // dd($user->profile);
+
+    // $user = User::with('profile')->find(1);
+    // dd($user);
+
+    $user = User::with('profile')->find(2);
+    $user->profile()->create([
+        'type' => 'PJ',
+        'document_number' => '909049499049'
+    ]);
+
+    // dd($user->profile->type);
+    dd($user->profile->document_number);
+
 });
 
 Route::get('admin/usuarios', function () {
