@@ -4,7 +4,7 @@
 
 @section('content')
 <h1 class="user-name">{{ $greeting }}</h1>
-<img src="{{ Vite::asset('resources/images/ilustracao.png') }}" alt="">
+<!-- <img src="{{ Vite::asset('resources/images/ilustracao.png') }}" alt=""> -->
 @php
 $name = 'felipe';
 @endphp
@@ -12,8 +12,7 @@ $name = 'felipe';
 @foreach ($users as $user)
 <div>{{ $user->name }} - {{ $user->email }}</div>
 @endforeach
+<!-- // Renderiza os links de paginação (números de página, anterior/próximo) -->
+{{ $users->links() }}
 
-{{ $name }}
-
-{{ dd($users) }}
 @endsection

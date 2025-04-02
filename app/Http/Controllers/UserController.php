@@ -9,7 +9,10 @@ class UserController extends Controller
 {
     public function getUsers () {
         // buscando todos os usuários do banco
-        $users = User::all();
+        // $users = User::all();
+
+        $users = User::paginate(2);
+        // dd($users);
 
         // retornando view para a função que é executada na rota e setando variáveis para o blade template
         return view('users.index', [
