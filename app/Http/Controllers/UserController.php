@@ -34,4 +34,26 @@ class UserController extends Controller
         ]);
         // return $user;
     }
+
+    public function create () {
+        return view('users.create');
+    }
+
+    public function store (Request $request) {
+        // dd($request);
+        // trás todos os campos do form
+        // dd($request->all());
+        
+        // validando formulários 
+        $inputs = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3'
+        ]);
+
+        // dd($inputs);
+        User::create($inputs);
+
+        return redirect()->back();
+    }
 }

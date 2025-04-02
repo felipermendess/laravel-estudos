@@ -101,8 +101,11 @@ Route::get('admin/usuarios', function () {
         'id'=>1,
         'name'=>'John'
     ];
-});
+})->name('users.index');
 
-Route::get('/users', [UserController::class, 'getUsers']);
+Route::get('/users', [UserController::class, 'getUsers'])->name('list.users');
 
 Route::get('admin/usuarios/{user}', [UserController::class, 'show']);
+
+Route::get('admin/usuario/cadastrar', [UserController::class, 'create'])->name('users.create');
+Route::post('admin/usuario/cadastrar', [UserController::class, 'store'])->name('users.store');
