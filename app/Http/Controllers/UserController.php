@@ -48,11 +48,22 @@ class UserController extends Controller
         $inputs = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:3'
+            'password' => 'required|min:3',
+            'photo' => 'file'
         ]);
 
-        // dd($inputs);
-        User::create($inputs);
+        // validando se o arquivo é valido e não vazio
+        if (!empty($inputs['photo']) && $inputs['photo']->isValid()) {
+            // salvando arquivo no storage > app > private
+            $inputs['photo']->store();
+
+            // caso queira guardar o arquivo na pasta public basta mudar no arquivo .env:
+		    // FILESYSTEM_DISK = public
+		 
+        }
+
+        dd($inputs);
+        // User::create($inputs);
 
         return redirect()->back();
     }

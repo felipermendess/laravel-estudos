@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Cadastro de Usuário</h1>
-<form action="{{ route('users.store') }}" method="POST">
+<form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     {{ $errors->any() }}
     @if ($errors->any())
@@ -25,6 +25,10 @@
     <div>
         <label for="password">Senha</label>
         <input type="password" name="password">
+    </div>
+    <div>
+        <label for="photo">Foto de Perfil</label>
+        <input type="file" name="photo">
     </div>
     <div>
         <button type="submit">Cadastrar</button>
