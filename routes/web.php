@@ -24,4 +24,4 @@ Route::options('users', function () {});
 // rotas com múltiplos verbos http
 Route::match(['get', 'post'], 'users/methods', function () {
     return 'Múltiplos verbos http';
-});
+})->name('users');
