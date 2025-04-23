@@ -40,3 +40,8 @@ Route::get('route-one', function () {
 Route::get('route-two', function () {
     return 'Route two executing';
 })->name('routeTwo');
+
+// Renderizando view direto da rota e passando dados
+Route::view('/welcome', 'welcome', [
+    'greeting' => 'Hello World Laravel'
+]);
