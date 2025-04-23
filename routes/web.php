@@ -11,9 +11,9 @@ Route::get('/', function () {
 });
 
 // criando rota (uri, função)
-Route::get('users', function () {
-	return 'Hello World';
-});
+// Route::get('users', function () {
+// 	return 'Hello World';
+// });
 
 Route::post('users', function () {});
 Route::delete('users', function () {});
@@ -45,3 +45,10 @@ Route::get('route-two', function () {
 Route::view('/welcome', 'welcome', [
     'greeting' => 'Hello World Laravel'
 ]);
+
+// Rotas com parâmetros
+Route::get('/users/{id}/{name}', function ($id = null, $name = null) {
+    return 'Hello User ' . $id . ' - ' . $name;
+});
+// ? torna o parâmetro opcional
+// valor padrão: inicializando parâmetro como null para evitar erro
