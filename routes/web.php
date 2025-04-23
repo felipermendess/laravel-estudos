@@ -25,3 +25,18 @@ Route::options('users', function () {});
 Route::match(['get', 'post'], 'users/methods', function () {
     return 'Múltiplos verbos http';
 })->name('users');
+
+// redirecionamento de rotas
+// Route::redirect('route-one', 'route-two', 301);
+// Route::permanentRedirect('route-one', 'route-two');
+
+Route::get('route-one', function () {
+    // lógica
+    // sem nome da rota: return redirect('route-two');
+    // com nome da rota
+    return redirect()->route('routeTwo');
+});
+
+Route::get('route-two', function () {
+    return 'Route two executing';
+})->name('routeTwo');
