@@ -101,13 +101,28 @@ Route::get('/rules/{id}', function ($id) {
 // Route::pattern('token', '[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}');
 
 // agrupando rotas com prefixo
-Route::prefix('users')->name('admin.')->group(function () {
-    Route::get('', function () {
-        return 'Hello User';
-    })->name('users');
+// Route::prefix('users')->name('admin.')->group(function () {
+//     Route::get('', function () {
+//         return 'Hello User';
+//     })->name('users');
 
-    Route::get('{id}', function ($id) {
-        return 'Hello User ' . $id;
+//     Route::get('{id}', function ($id) {
+//         return 'Hello User ' . $id;
+//     })->name('user');
+// });
+
+// agrupando rotas com middleware
+Route::middleware('signed')->group(function () {
+    Route::get('user', function () {
+        return 'Hello User';
     })->name('user');
+
+    Route::get('user/{id}', function ($id) {
+        return 'Hello User ' . $id;
+    })->name('user.id');
 });
 
+// middleware isoladamente
+Route::get('test', function () {
+    return 'Testing';
+})->middleware('password.confirm');
