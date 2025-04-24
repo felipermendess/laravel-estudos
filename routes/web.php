@@ -52,3 +52,36 @@ Route::get('/users/{id}/{name}', function ($id = null, $name = null) {
 });
 // ? torna o parâmetro opcional
 // valor padrão: inicializando parâmetro como null para evitar erro
+
+// validações de rotas com exp. regular - números, letras, mescla, array
+Route::get('/players/{player}', function ($player) {
+    return $player;
+})->where('player', '[0-9]+');
+
+Route::get('/drivers/{driver}', function ($driver) {
+    return $driver;
+})->where('driver', '[A-Za-z]+');
+
+Route::get('/thinkers/{thinker}/{id}', function ($thinker, $id) {
+    return $thinker . ' - ' . $id;
+})->where('thinker', '[A-Za-z]+')->where('id', '[0-9]+');
+
+Route::get('/strikers/{striker}/{id}', function ($striker, $id) {
+    return $striker . ' - ' . $id;
+})->where([
+    'striker' => '[A-Za-z]+',
+    'id' => '[0-9]+'
+]);
+
+// validação de rotas com helpers - whereNumber, whereAlpha, whereAlphaNumeric
+Route::get('/mousers/{mouser}', function ($mouser) {
+    return $mouser;
+})->whereNumber('mouser');
+
+Route::get('/fakers/{faker}', function ($faker) {
+    return $faker;
+})->whereAlpha('faker');
+
+Route::get('/courses/{course}', function ($course) {
+    return $course;
+})->whereAlphaNumeric('course');
