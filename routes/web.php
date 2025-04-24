@@ -22,9 +22,9 @@ Route::patch('users', function () {});
 Route::options('users', function () {});
 
 // rotas com múltiplos verbos http
-Route::match(['get', 'post'], 'users/methods', function () {
-    return 'Múltiplos verbos http';
-})->name('users');
+// Route::match(['get', 'post'], 'users/methods', function () {
+//     return 'Múltiplos verbos http';
+// })->name('users');
 
 // redirecionamento de rotas
 // Route::redirect('route-one', 'route-two', 301);
@@ -85,3 +85,29 @@ Route::get('/fakers/{faker}', function ($faker) {
 Route::get('/courses/{course}', function ($course) {
     return $course;
 })->whereAlphaNumeric('course');
+
+Route::get('/ballers/{id}', function ($id) {
+    return 'Baller ' . $id;
+});
+
+Route::get('/rules/{id}', function ($id) {
+    return 'Rule Number ' . $id;
+});
+
+// validando parâmetro id globalmente
+// app > providers > routeserviceprovider
+
+// Route::pattern('id', '[0-9]+');
+// Route::pattern('token', '[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}');
+
+// agrupando rotas com prefixo
+Route::prefix('users')->name('admin.')->group(function () {
+    Route::get('', function () {
+        return 'Hello User';
+    })->name('users');
+
+    Route::get('{id}', function ($id) {
+        return 'Hello User ' . $id;
+    })->name('user');
+});
+
