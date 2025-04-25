@@ -126,3 +126,13 @@ Route::middleware('signed')->group(function () {
 Route::get('test', function () {
     return 'Testing';
 })->middleware('password.confirm');
+
+// agrupando rotas com subdominio
+Route::domain('{user}.felipesitepro.test')->group(function () {
+    Route::get('', function ($user) {
+        return 'Hello User ' . $user;
+    });
+    Route::get('{id}', function ($id) {
+        return 'Hello User ' . $id;
+    });
+});
