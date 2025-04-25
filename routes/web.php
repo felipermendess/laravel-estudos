@@ -42,9 +42,9 @@ Route::get('route-two', function () {
 })->name('routeTwo');
 
 // Renderizando view direto da rota e passando dados
-Route::view('/welcome', 'welcome', [
-    'greeting' => 'Hello World Laravel'
-]);
+// Route::view('/welcome', 'welcome', [
+//     'greeting' => 'Hello World Laravel'
+// ]);
 
 // Rotas com parâmetros
 Route::get('/users/{id}/{name}', function ($id = null, $name = null) {
@@ -135,4 +135,9 @@ Route::domain('{user}.felipesitepro.test')->group(function () {
     Route::get('{id}', function ($id) {
         return 'Hello User ' . $id;
     });
+});
+
+// fallback - "plano b" quando nenhuma rota corresponde à requisição feita
+Route::fallback(function () {
+    return view('welcome');
 });
