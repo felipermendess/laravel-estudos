@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -112,15 +113,15 @@ Route::get('/rules/{id}', function ($id) {
 // });
 
 // agrupando rotas com middleware
-Route::middleware('signed')->group(function () {
-    Route::get('user', function () {
-        return 'Hello User';
-    })->name('user');
+// Route::middleware('signed')->group(function () {
+//     Route::get('user', function () {
+//         return 'Hello User';
+//     })->name('user');
 
-    Route::get('user/{id}', function ($id) {
-        return 'Hello User ' . $id;
-    })->name('user.id');
-});
+//     Route::get('user/{id}', function ($id) {
+//         return 'Hello User ' . $id;
+//     })->name('user.id');
+// });
 
 // middleware isoladamente
 Route::get('test', function () {
@@ -140,4 +141,18 @@ Route::domain('{user}.felipesitepro.test')->group(function () {
 // fallback - "plano b" quando nenhuma rota corresponde à requisição feita
 Route::fallback(function () {
     return view('welcome');
+});
+
+// Injeção de depedências
+Route::get('dependencies', function (Request $request) {
+    dd($request->query('animal'));  // Valor do parâmetro 'animal' na URL (?animal=gato)
+    dd($request->query);            // Todos os parâmetros da query string
+    dd($request->headers);          // Cabeçalhos HTTP da requisição
+    dd($request->method());         // Método HTTP (GET, POST, etc.)
+    dd($request);                   // Objeto Request completo
+});
+
+// Injeção de Model na Rota
+Route::get('user/{user}', function (User $user) {
+    dd($user);
 });
