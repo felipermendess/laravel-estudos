@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Test2;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
+use App\Http\Middleware\Test1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -156,3 +158,31 @@ Route::get('dependencies', function (Request $request) {
 Route::get('user/{user}', function (User $user) {
     dd($user);
 });
+
+Route::get('/lovers', function() {
+    return ['lovers'];
+})->middleware(Test1::class);
+
+Route::get('/glasses', function() {
+    return ['glasses'];
+})->middleware([Test1::class, Test2::class]);
+
+// test1::class e test2::class = test
+Route::middleware(['test'])->group(function() {
+    Route::get('/branches', function() {
+        return 'Hello branch';
+    });
+    Route::get('/trees', function() {
+        return 'Hello tree';
+    });
+
+    Route::withoutMiddleware(['test1'])->group(function() {
+        Route::get('/blog', function() {
+            return 'Blog.com';
+        });
+        Route::get('/contact', function() {
+            return 'Contact with me';
+        });
+    });
+});
+// 'test1' = Test1::class, 'test2' = Test2::class
