@@ -193,3 +193,24 @@ Route::get('/print/{id}', [UserController::class, 'printUserId']);
 
 // controller de ação única = invokable
 Route::get('/checkout', CheckoutController::class);
+
+// Route::resource('/allUsers', UserController::class);
+
+// setando métodos para controller = only('method')
+// Route::resource('/allUsers', UserController::class)->only(['index, destroy']);
+
+// setando métodos que não devem conter no controller = execept('method');
+// Route::resource('/allUsers', UserController::class)->except(['edit', 'update']);
+
+// criando múltiplos resources
+Route::resources([
+    '/allUsers' => UserController::class,
+    '/allPosts' => UserController::class
+]);
+
+// criando resource para API - remove métodos que precisam de views (create, edit)
+Route::apiResource('/allProfiles', UserController::class);
+// sintaxe para várias apiResources
+// Route::apiResources([
+
+// ]);
