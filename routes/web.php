@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Test2;
 use App\Models\Post;
@@ -186,3 +187,9 @@ Route::middleware(['test'])->group(function() {
     });
 });
 // 'test1' = Test1::class, 'test2' = Test2::class
+
+Route::get('/show', [UserController::class, 'show']);
+Route::get('/print/{id}', [UserController::class, 'printUserId']);
+
+// controller de ação única = invokable
+Route::get('/checkout', CheckoutController::class);
