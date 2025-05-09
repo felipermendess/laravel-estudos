@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use App\Http\Middleware\Test2;
 use App\Models\Post;
 use App\Models\Role;
@@ -19,11 +20,11 @@ Route::get('/', function () {
 // 	return 'Hello World';
 // });
 
-Route::post('users', function () {});
-Route::delete('users', function () {});
-Route::put('users', function () {});
-Route::patch('users', function () {});
-Route::options('users', function () {});
+// Route::post('users', function () {});
+// Route::delete('users', function () {});
+// Route::put('users', function () {});
+// Route::patch('users', function () {});
+// Route::options('users', function () {});
 
 // rotas com múltiplos verbos http
 // Route::match(['get', 'post'], 'users/methods', function () {
@@ -51,9 +52,9 @@ Route::get('route-two', function () {
 // ]);
 
 // Rotas com parâmetros
-Route::get('/users/{id}/{name}', function ($id = null, $name = null) {
-    return 'Hello User ' . $id . ' - ' . $name;
-});
+// Route::get('/users/{id}/{name}', function ($id = null, $name = null) {
+//     return 'Hello User ' . $id . ' - ' . $name;
+// });
 // ? torna o parâmetro opcional
 // valor padrão: inicializando parâmetro como null para evitar erro
 
@@ -188,7 +189,7 @@ Route::middleware(['test'])->group(function() {
 });
 // 'test1' = Test1::class, 'test2' = Test2::class
 
-Route::get('/show', [UserController::class, 'show']);
+// Route::get('/show', [UserController::class, 'show']);
 Route::get('/print/{id}', [UserController::class, 'printUserId']);
 
 // controller de ação única = invokable
@@ -214,3 +215,27 @@ Route::apiResource('/allProfiles', UserController::class);
 // Route::apiResources([
 
 // ]);
+
+// formas de aninhar rotas
+// users/{user}/comments -> puxa todos os comentários do usuário
+// users/{user}/comments/comment -> puxa um comentário específico do usuário
+// Route::resource('/users/{user}/comments', UserController::class);
+// facilitando a escrita de rotas aninhadas com .
+// Route::resource('users.comments', UserController::class);
+// separando rotas aninhadas com prefixo shallow, ou seja, não precisa passar o id do usuário para criar um comentário
+// Route::resource('users.comments', UserController::class)->shallow();
+
+// definindo nome para parâmetros gerados pela resource
+Route::resource('/posts', PostController::class)->parameters([
+    'posts' => 'postId'
+]);
+
+// definindo tipo de parâmetro como email (campo do db) e tirando o padrão de id com os dois pontos
+// Route::get('showUsers/{user:email}', [UserController::class, 'show']);
+// fazemos o mesmo com resource
+Route::resource('/users', UserController::class)->scoped([
+    'user' => 'email'
+]);
+
+// adicionando rota comum a um resource
+Route::get('users/posts', [UserController::class, 'posts'])->name('users.posts');
