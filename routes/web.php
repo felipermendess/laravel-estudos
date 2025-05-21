@@ -233,9 +233,77 @@ Route::resource('/posts', PostController::class)->parameters([
 // definindo tipo de parâmetro como email (campo do db) e tirando o padrão de id com os dois pontos
 // Route::get('showUsers/{user:email}', [UserController::class, 'show']);
 // fazemos o mesmo com resource
-Route::resource('/users', UserController::class)->scoped([
-    'user' => 'email'
-]);
+// Route::resource('/users', UserController::class)->scoped([
+//     'user' => 'email'
+// ]);
 
 // adicionando rota comum a um resource
 Route::get('users/posts', [UserController::class, 'posts'])->name('users.posts');
+
+// acessando dados da url
+// Route::get('user', function (Request $request) {
+    // dd($request);
+    // dd($request->path());
+    // dd($request->url());
+    // dd($request->fullUrl());
+    // dd($request->fullUrlWithQuery(['curso' => 'laravel']));
+    // dd($request->fullUrlIs('www.google.com'));
+    // dd($request->is('user'));
+    // dd($request->routeIs('user'));
+    // dd($request->method());
+    // dd($request->isMethod('post'));
+// });
+
+// acessando dados do input
+// Route::get('user', function (Request $request) {
+//     dd($request);
+//     dd($request->input());
+//     dd($request->input('token'));
+//     dd($request->input('course', 'course not defined'));
+//     dd($request->input('course', 'course not defined'));
+//     dd($request->input('course.laravel'));
+//     dd($request->query());
+//     dd($request->query('token'));
+//     dd($request->query('product', 'laragon'));
+//     dd($request->token);
+//     dd($request->only('course'));
+//     dd($request->except('course'));
+// });
+
+// checagem dos inputs
+Route::get('user', function (Request $request) {
+	// has - verifica se tem
+    // if ($request->has('token')) {
+	//     dd('token existe');
+    // }
+
+    // has com mais de um input
+    // if ($request->has(['token', 'course'])) {
+	//     dd('token e course existem');
+    // }
+
+    // whenHas - quando tiver
+    // $request->whenHas('token', function ($input) {
+	//     dd('faça alguma coisa quando tiver token');
+    // });
+
+    // hasAny - se pelo menos uma existir
+    // if ($request->hasAny(['token', 'product'])) {
+	//     dd('faça algo se um deles existir');
+    // }
+
+    // filled - verifica se o campo está preenchido
+    // if ($request->filled('curso')) {
+	//     dd('faça algo');
+    // }
+
+    // whenFilled - faz algo quando estiver preenchido
+    // $request->whenFilled('curso', function ($input) {
+	//     dd('faça alguma coisa quando curso tiver preenchido');
+    // });
+
+    // missing - verifica se está fora da request
+    if ($request->missing('cursos')) {
+	    dd('Cursos está faltando');
+    }
+});
