@@ -3,6 +3,7 @@
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Test2;
 use App\Models\Post;
 use App\Models\Role;
@@ -10,6 +11,7 @@ use App\Models\User;
 use App\Http\Middleware\Test1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
     return view('welcome');
@@ -271,39 +273,55 @@ Route::get('users/posts', [UserController::class, 'posts'])->name('users.posts')
 // });
 
 // checagem dos inputs
-Route::get('user', function (Request $request) {
-	// has - verifica se tem
-    // if ($request->has('token')) {
-	//     dd('token existe');
-    // }
+// Route::get('user', function (Request $request) {
+// 	has - verifica se tem
+//     if ($request->has('token')) {
+// 	    dd('token existe');
+//     }
 
-    // has com mais de um input
-    // if ($request->has(['token', 'course'])) {
-	//     dd('token e course existem');
-    // }
+//     has com mais de um input
+//     if ($request->has(['token', 'course'])) {
+// 	    dd('token e course existem');
+//     }
 
-    // whenHas - quando tiver
-    // $request->whenHas('token', function ($input) {
-	//     dd('faça alguma coisa quando tiver token');
-    // });
+//     whenHas - quando tiver
+//     $request->whenHas('token', function ($input) {
+// 	    dd('faça alguma coisa quando tiver token');
+//     });
 
-    // hasAny - se pelo menos uma existir
-    // if ($request->hasAny(['token', 'product'])) {
-	//     dd('faça algo se um deles existir');
-    // }
+//     hasAny - se pelo menos uma existir
+//     if ($request->hasAny(['token', 'product'])) {
+// 	    dd('faça algo se um deles existir');
+//     }
 
-    // filled - verifica se o campo está preenchido
-    // if ($request->filled('curso')) {
-	//     dd('faça algo');
-    // }
+//     filled - verifica se o campo está preenchido
+//     if ($request->filled('curso')) {
+// 	    dd('faça algo');
+//     }
 
-    // whenFilled - faz algo quando estiver preenchido
-    // $request->whenFilled('curso', function ($input) {
-	//     dd('faça alguma coisa quando curso tiver preenchido');
-    // });
+//     whenFilled - faz algo quando estiver preenchido
+//     $request->whenFilled('curso', function ($input) {
+// 	    dd('faça alguma coisa quando curso tiver preenchido');
+//     });
 
-    // missing - verifica se está fora da request
-    if ($request->missing('cursos')) {
-	    dd('Cursos está faltando');
-    }
+//     missing - verifica se está fora da request
+//     if ($request->missing('cursos')) {
+// 	    dd('Cursos está faltando');
+//     }
+// });
+
+// views
+Route::get('/', function () {
+    // return view('welcome');
+
+    // return View::make('welcome');
+
+    // return view('users.index');
+
+    // return View::first(['users.profile_view', 'users.profile']);
+
+    // dd(View::exists('users.posts'));
 });
+
+// view e controller
+Route::get('profile', [ProfileController::class, 'index']);
