@@ -312,7 +312,7 @@ Route::get('users/posts', [UserController::class, 'posts'])->name('users.posts')
 
 // views
 Route::get('/', function () {
-    // return view('welcome');
+    return view('welcome');
 
     // return View::make('welcome');
 
