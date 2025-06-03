@@ -324,4 +324,4 @@ Route::get('/', function () {
 });
 
 // view e controller
-Route::get('profile', [ProfileController::class, 'index']);
+Route::get('profile', [UserController::class, 'index']);

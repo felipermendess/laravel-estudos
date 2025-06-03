@@ -13,8 +13,8 @@
         Conteúdo padrão
     @show
     <br>
-    @yield('content', 'Conteúdo padrão do yield')
-    @stack('scripts')
+    <!-- @yield('content', 'Conteúdo padrão do yield') -->
+    <!-- @stack('scripts') -->
 </body>
 
 </html>
