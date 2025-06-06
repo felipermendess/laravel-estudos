@@ -11,13 +11,25 @@ class UserList extends Component
 {
     public $users;
     public $type;
+    public $cardClass;
+    // except oculta o método/atributo
+    // public $except = ['type'];
+
     /**
      * Create a new component instance.
      */
-    public function __construct($users = null, $type = "lista")
+    public function __construct($users = null, $type = "lista", $cardClass = "success")
     {
-        $this->users = $users;
+        $this->users = User::all();
+        // $this->users = $users;
         $this->type = $type;
+        $this->cardClass = $cardClass;
+    }
+
+    public function isAdmin($username)
+    {
+        $message = $username === 'felipe' ? 'admin' : 'no admin';
+        return $message;
     }
 
     /**

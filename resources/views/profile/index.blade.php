@@ -8,6 +8,9 @@
 <x-user.user-list
     :user="$users"
     type="card"
+    cardClass="danger"
+    class="d-none"
+    user-data-id
 ></x-user.user-list>
 @endsection
 
