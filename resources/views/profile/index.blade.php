@@ -5,13 +5,23 @@
 @section('sidebar')
 <!-- <x-user></x-user>
 <br><br> -->
-<x-user.user-list
+<!-- <x-user.user-list
     :user="$users"
     type="card"
     cardClass="danger"
     class="d-none"
     user-data-id
-></x-user.user-list>
+></x-user.user-list> -->
+<x-form.button
+    nameButton="Salvar"
+    collorButton="primary"
+    class="mt-5"
+    isWarning
+    loading="true"
+    waiting
+>
+
+</x-form.button>
 @endsection
 
 <!-- each('user.show_users', $users, 'user') -->
