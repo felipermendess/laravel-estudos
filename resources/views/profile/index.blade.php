@@ -22,6 +22,30 @@
 >
 
 </x-form.button>
+
+<x-laravel.doc>
+    <x-slot name="title"></x-slot>
+    <h1>Conteúdo HTML</h1>
+</x-laravel.doc>
+
+<x-card
+    content-align="center"
+    content="registros"
+    more="atualizado"
+>
+    <x-slot name="title">Regiões Populosas</x-slot>
+    {{ $component->attributes }}
+    {{ $component->attributes->get('content') }}
+    {{ $component->attributes->get('more') }}
+    <ul>
+        <li>Região Norte</li>
+        <li>Região Nordeste</li>
+        <li>Região Centro-Oeste</li>
+        <li>Região Sudeste</li>
+        <li>Região Sul</li>
+    </ul>
+    <x-slot name="plinth">2025 atualizações</x-slot>
+</x-card>
 @endsection
 
 <!-- each('user.show_users', $users, 'user') -->

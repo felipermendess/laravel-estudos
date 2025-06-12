@@ -11,6 +11,6 @@
 
     <!-- {{ $attributes->whereStartsWith('class') }} -->
 
-    {{ $attributes->get('class') }}
-    {{ $attributes->has('class') ? 'true' : 'false' }}
+    <!-- {{ $attributes->get('class') }}
+    {{ $attributes->has('class') ? 'true' : 'false' }} -->
 </button>
